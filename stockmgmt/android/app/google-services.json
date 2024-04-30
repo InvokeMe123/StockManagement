@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "413674121260",
-    "project_id": "stockmgmt-1a02b",
-    "storage_bucket": "stockmgmt-1a02b.appspot.com"
+    "project_number": "45933710195",
+    "project_id": "stockmgmt-cf0b6",
+    "storage_bucket": "stockmgmt-cf0b6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:413674121260:android:64de2883df57c6616e4989",
+        "mobilesdk_app_id": "1:45933710195:android:f0a65a89cf85322178d306",
         "android_client_info": {
-          "package_name": "com.example.stockmgmt"
+          "package_name": "com.stockmgmt.app"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA0_2I5Lq8XmuDFuBFmVB3c8E89RseGIBU"
+          "current_key": "AIzaSyCkzhQBWk2gj6qN6pYF1aZqn23qa2X6ai0"
         }
       ],
       "services": {

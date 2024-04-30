@@ -8,6 +8,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //Firebase.initializeApp();
   runApp(ProviderScope(
+    
     child: StockMgmtApp(),
   ));
   await Future.delayed(const Duration(milliseconds: 1));

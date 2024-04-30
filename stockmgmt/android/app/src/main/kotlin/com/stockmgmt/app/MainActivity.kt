@@ -1,4 +1,4 @@
-package com.example.stockmgmt
+package com.stockmgmt.app
 
 import io.flutter.embedding.android.FlutterActivity
 
