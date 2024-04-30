@@ -105,11 +105,6 @@ class _BottomBarState extends State<BottomBar> {
       body: SafeArea(
         child: screens[_selectedIndex],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        shape: CircleBorder(),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
