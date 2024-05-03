@@ -48,6 +48,10 @@ dependencies:
   http: ^1.2.0
   syncfusion_flutter_charts: ^25.1.41+2
   roundcheckbox: ^2.0.5
+  shared_preferences: ^2.2.3
+  freezed: ^2.5.2
+  freezed_annotation: ^2.4.1
+  shimmer: ^3.0.0
  
   
 
@@ -55,6 +59,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_native_splash: ^2.2.19  
+  build_runner: ^2.4.9
 
 flutter_native_splash:
   android: true

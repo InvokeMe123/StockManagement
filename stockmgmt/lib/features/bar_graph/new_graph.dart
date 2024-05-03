@@ -13,7 +13,10 @@ class BarGraph extends ConsumerWidget {
       primaryXAxis: CategoryAxis(),
       series: <CartesianSeries>[
         ColumnSeries<SalesData, String>(
-          color: Colors.blueAccent,
+          pointColorMapper: (SalesData sales, _) {
+            // Change the color to red if sales data is less than 10
+            return sales.sales < 10 ? Colors.red : Colors.green;
+          },
           borderRadius: BorderRadius.circular(12),
           dataSource: <SalesData>[
             SalesData('Jan', 35),
