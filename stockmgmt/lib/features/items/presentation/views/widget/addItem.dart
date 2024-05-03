@@ -69,43 +69,6 @@ class _AddItemState extends ConsumerState<AddItem> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Row(
-                //   children: [
-                //     SizedBox(
-                //       height: 24,
-                //       width: 24,
-                //       child: RoundCheckBox(
-                //         isChecked: isNewBrand,
-                //         onTap: (selected) {
-                //           setState(() {
-                //             isNewBrand = selected!;
-                //           });
-                //         },
-                //         size: 60,
-                //         checkedWidget: Icon(
-                //           Icons.check,
-                //           size: 18,
-                //           color: Colors.white,
-                //         ),
-                //         uncheckedColor: Colors.white,
-                //       ),
-                //     ),
-                //     const SizedBox(
-                //       width: 10,
-                //     ),
-                //     Text(
-                //       'New brand',
-                //       style: TextStyle(
-                //           fontSize: 16,
-                //           color: Colors.black,
-                //           fontWeight: FontWeight.normal,
-                //           letterSpacing: 0.8),
-                //     )
-                //   ],
-                // ),
-                // SizedBox(
-                //   height: 10,
-                // ),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,

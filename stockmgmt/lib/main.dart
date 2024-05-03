@@ -6,7 +6,7 @@ import 'package:stockmgmt/app/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //Firebase.initializeApp();
+  await Firebase.initializeApp();
   runApp(ProviderScope(
     
     child: StockMgmtApp(),
