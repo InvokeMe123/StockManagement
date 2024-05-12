@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stockmgmt/const/app_color_const.dart';
+import 'package:stockmgmt/features/items/presentation/controller/sold_purchased_controller.dart';
 
-class SellProduct extends StatelessWidget {
+class SellProduct extends ConsumerWidget {
   const SellProduct({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     TextEditingController count = TextEditingController();
     TextEditingController price = TextEditingController();
+    final quantityProvider = ref.watch(soldPurchasedProvider.notifier);
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       backgroundColor: Colors.white,
@@ -87,7 +90,9 @@ class SellProduct extends StatelessWidget {
                 'Sell',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () {},
+              onPressed: () {
+                quantityProvider.soldQuantity(count: int.parse(count.text));
+              },
             ),
           )
         ],

@@ -10,6 +10,7 @@ import 'package:stockmgmt/features/auth/presentation/views/register.dart';
 
 import 'package:stockmgmt/features/dashboard/presentation/views/homescreen.dart';
 import 'package:stockmgmt/utils/bottom_bar/bottom_bar.dart';
+import 'package:stockmgmt/utils/custom_snackbar/custom_snackbar.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -36,10 +37,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         .read(authControllerProvider.notifier)
         .login(_emailController.text, _passwordController.text)
         .then((value) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const BottomBar(selectedIndex: 0)));
+      if (value) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomBar(selectedIndex: 0)));
+      } else {
+        showCustomSnackBar("Invalid Email or Password", context, isError: true);
+      }
     });
   }
 

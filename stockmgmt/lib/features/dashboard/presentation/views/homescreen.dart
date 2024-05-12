@@ -7,6 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:stockmgmt/core/db_client/db_client.dart';
 import 'package:stockmgmt/features/bar_graph/new_graph.dart';
 import 'package:stockmgmt/features/auth/auth_service/data_source.dart';
+import 'package:stockmgmt/features/items/data/data_source/items_data_source.dart';
+import 'package:stockmgmt/features/items/presentation/controller/items_controller.dart';
+import 'package:stockmgmt/features/items/presentation/controller/sold_purchased_controller.dart';
 import 'package:stockmgmt/features/items/presentation/views/items.dart';
 import 'package:stockmgmt/utils/custom_nav/app_nav.dart';
 import 'package:stockmgmt/utils/items_type/items_card.dart';
@@ -46,9 +49,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final quantitySoldPurchased = ref.read(soldPurchasedProvider);
-    final quantitySoldHome = ref.read(soldHomeProvider);
-    final quantityPurchasedHome = ref.read(purchasedHomeProvider);
+    final quantitySoldPurchased = ref.watch(soldPurchasedProvider);
+
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return FutureBuilder(
@@ -81,7 +83,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Column(
                     children: [
                       Container(
-                        height: 200,
+                        height: height * .20,
                         margin: const EdgeInsets.only(left: 17, right: 17),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
@@ -93,18 +95,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
+                                  ref
+                                          .watch(itemDataSourceProvider)
+                                          .getFormattedMonth() +
+                                      '\'s' +
+                                      " Summary",
+                                  style: GoogleFonts.montserrat(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14),
+                                ),
+                                Text(
                                   "$storeName",
                                   style: GoogleFonts.montserrat(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                Text(
-                                  "Today's Summary",
-                                  style: GoogleFonts.montserrat(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
+                                      fontSize: 22),
                                 ),
                                 Text(
                                   "${DateFormat('EEEE, d MMMM y').format(DateTime.now())}",
@@ -117,61 +123,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                   height: 15,
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Sold Quantity",
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w200,
-                                              fontSize: 15),
-                                        ),
-                                        Text(
-                                          '$quantitySoldHome',
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 15),
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      width: 50,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Purchased Quantity",
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w200,
-                                              fontSize: 15),
-                                        ),
-                                        Text(
-                                          '$quantityPurchasedHome',
-                                          style: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 15),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Earnings(Rs)",
+                                          "Total Earnings(Rs)",
                                           style: GoogleFonts.montserrat(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w200,
@@ -186,15 +146,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                         )
                                       ],
                                     ),
-                                    const SizedBox(
-                                      width: 58,
-                                    ),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Spendings(Rs)",
+                                          "Total Spendings(Rs)",
                                           style: GoogleFonts.montserrat(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w200,

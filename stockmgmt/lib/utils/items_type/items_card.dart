@@ -5,12 +5,7 @@ import 'package:stockmgmt/features/items/presentation/controller/sold_purchased_
 import 'package:stockmgmt/features/items/presentation/views/widget/widget_item_details/add_product.dart';
 import 'package:stockmgmt/features/items/presentation/views/widget/widget_item_details/sell_product.dart';
 
-final soldPurchasedProvider =
-    StateNotifierProvider<SoldPurchased, int>((ref) => SoldPurchased());
-final soldHomeProvider =
-    StateNotifierProvider<SoldHome, int>((ref) => SoldHome());
-final purchasedHomeProvider =
-    StateNotifierProvider<PurchasedHome, int>((ref) => PurchasedHome());
+
 
 class ItemCard extends ConsumerStatefulWidget {
   final String brandName;
@@ -29,7 +24,7 @@ class ItemCard extends ConsumerStatefulWidget {
 class ItemCardState extends ConsumerState<ItemCard> {
   @override
   Widget build(BuildContext context) {
-    var quantityCounter = ref.watch(soldPurchasedProvider);
+    
 
     return Scaffold(
         body: SafeArea(

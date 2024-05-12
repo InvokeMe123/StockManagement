@@ -9,6 +9,7 @@ import 'package:stockmgmt/features/auth/auth_service/auth_service.dart';
 import 'package:stockmgmt/features/auth/presentation/controller/auth_controller.dart';
 import 'package:stockmgmt/features/auth/presentation/views/login_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:stockmgmt/utils/custom_snackbar/custom_snackbar.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
@@ -52,18 +53,16 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             _passwordController.text,
           )
           .then((value) async {
-        await authService.addUserToFirestore(
-            _storeNameController.text, _nameController.text);
-      }).then((value) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const LoginScreen()));
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: AppColorConst.kappprimaryColorBlue,
-          content: Text(
-            'Sucessfully Register',
-            style: TextStyle(color: Colors.white),
-          ),
-        ));
+        if (value) {
+          await authService.addUserToFirestore(
+              _storeNameController.text, _nameController.text);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+          showCustomSnackBar("Successfully Registered", context,
+              isError: false);
+        } else {
+          showCustomSnackBar("Something went wrong", context, isError: true);
+        }
       });
       // Registration successful, navigate to another screen or perform other actions
       print('Registration successful');

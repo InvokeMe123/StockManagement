@@ -31,7 +31,7 @@ class _ItemTypeState extends ConsumerState<ItemType> {
     return Container(
       height: height * .27,
       width: width * .45,
-      child: GestureDetector(
+      child: InkWell(
         onTap: () {
           normalNav(
               context,
@@ -42,10 +42,10 @@ class _ItemTypeState extends ConsumerState<ItemType> {
         child: Card(
           color: Colors.white,
           elevation: 8,
-          surfaceTintColor: Colors.white,
+          surfaceTintColor: Colors.transparent,
           shadowColor: Colors.black,
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +55,7 @@ class _ItemTypeState extends ConsumerState<ItemType> {
                     height: height * 0.13,
                     width: width * .24,
                     child: Image(
-                      image: AssetImage(
+                      image: NetworkImage(
                         widget.image,
                       ),
                       fit: BoxFit.fill,

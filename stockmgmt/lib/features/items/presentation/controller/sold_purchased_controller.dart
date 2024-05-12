@@ -1,34 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SoldPurchased extends StateNotifier<int> {
   SoldPurchased() : super(0);
 
-  void sold() {
-    if (state > 0) {
-      state--;
-    }
+  void soldQuantity({required int count}) {
+    state += count;
+    log(state.toString());
   }
 
-  void purchased() {
-    state++;
-  }
-
-  int soldQ() {
-    return state++;
+  void purchasedQuantity({required int count}) {
+    state -= count;
+    log(state.toString());
   }
 }
 
-class SoldHome extends StateNotifier<int> {
-  SoldHome() : super(0);
-
-  void soldH() {
-    state++;
-  }
-}
-
-class PurchasedHome extends StateNotifier<int> {
-  PurchasedHome() : super(0);
-  void purchasedH() {
-    state++;
-  }
-}
+final soldPurchasedProvider = StateNotifierProvider<SoldPurchased, int>((ref) {
+  return SoldPurchased();
+});
